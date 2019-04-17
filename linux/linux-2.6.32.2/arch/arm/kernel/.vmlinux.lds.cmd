@@ -1,4 +1,4 @@
-cmd_arch/arm/kernel/vmlinux.lds := arm-linux-gcc -E -Wp,-MD,arch/arm/kernel/.vmlinux.lds.d  -nostdinc -isystem /home/guanglun/work/mini2440/4.4.3/bin/../lib/gcc/arm-none-linux-gnueabi/4.4.3/include -Iinclude  -I/home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include -include include/linux/autoconf.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-s3c2410/include -Iarch/arm/mach-s3c2400/include -Iarch/arm/mach-s3c2412/include -Iarch/arm/mach-s3c2440/include -Iarch/arm/mach-s3c2442/include -Iarch/arm/mach-s3c2443/include -Iarch/arm/plat-s3c24xx/include -Iarch/arm/plat-s3c/include   -DTEXT_OFFSET=0x00008000 -P -C -Uarm -D__ASSEMBLY__ -DLINKER_SCRIPT -o arch/arm/kernel/vmlinux.lds arch/arm/kernel/vmlinux.lds.S
+cmd_arch/arm/kernel/vmlinux.lds := arm-linux-gcc -E -Wp,-MD,arch/arm/kernel/.vmlinux.lds.d  -nostdinc -isystem /home/guanglun/work/mini2440_uboot_linux/4.4.3/bin/../lib/gcc/arm-none-linux-gnueabi/4.4.3/include -Iinclude  -I/home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include -include include/linux/autoconf.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-s3c2410/include -Iarch/arm/mach-s3c2400/include -Iarch/arm/mach-s3c2412/include -Iarch/arm/mach-s3c2440/include -Iarch/arm/mach-s3c2442/include -Iarch/arm/mach-s3c2443/include -Iarch/arm/plat-s3c24xx/include -Iarch/arm/plat-s3c/include   -DTEXT_OFFSET=0x00008000 -P -C -Uarm -D__ASSEMBLY__ -DLINKER_SCRIPT -o arch/arm/kernel/vmlinux.lds arch/arm/kernel/vmlinux.lds.S
 
 deps_arch/arm/kernel/vmlinux.lds := \
   arch/arm/kernel/vmlinux.lds.S \
@@ -22,16 +22,16 @@ deps_arch/arm/kernel/vmlinux.lds := \
     $(wildcard include/config/constructors.h) \
     $(wildcard include/config/generic/bug.h) \
     $(wildcard include/config/pm/trace.h) \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/thread_info.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/thread_info.h \
     $(wildcard include/config/arm/thumbee.h) \
   include/linux/compiler.h \
     $(wildcard include/config/enable/must/check.h) \
     $(wildcard include/config/enable/warn/deprecated.h) \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/fpstate.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/fpstate.h \
     $(wildcard include/config/vfpv3.h) \
     $(wildcard include/config/smp.h) \
     $(wildcard include/config/iwmmxt.h) \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/memory.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/memory.h \
     $(wildcard include/config/page/offset.h) \
     $(wildcard include/config/thumb2/kernel.h) \
     $(wildcard include/config/highmem.h) \
@@ -41,12 +41,12 @@ deps_arch/arm/kernel/vmlinux.lds := \
     $(wildcard include/config/discontigmem.h) \
   include/linux/const.h \
   arch/arm/mach-s3c2410/include/mach/memory.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/sizes.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/sizes.h \
   include/asm-generic/memory_model.h \
     $(wildcard include/config/flatmem.h) \
     $(wildcard include/config/sparsemem/vmemmap.h) \
     $(wildcard include/config/sparsemem.h) \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/page.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/page.h \
     $(wildcard include/config/cpu/copy/v3.h) \
     $(wildcard include/config/cpu/copy/v4wt.h) \
     $(wildcard include/config/cpu/copy/v4wb.h) \

@@ -1,4 +1,4 @@
-cmd_net/ipv4/fib_frontend.o := arm-linux-gcc -Wp,-MD,net/ipv4/.fib_frontend.o.d  -nostdinc -isystem /home/guanglun/work/mini2440/4.4.3/bin/../lib/gcc/arm-none-linux-gnueabi/4.4.3/include -Iinclude  -I/home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include -include include/linux/autoconf.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-s3c2410/include -Iarch/arm/mach-s3c2400/include -Iarch/arm/mach-s3c2412/include -Iarch/arm/mach-s3c2440/include -Iarch/arm/mach-s3c2442/include -Iarch/arm/mach-s3c2443/include -Iarch/arm/plat-s3c24xx/include -Iarch/arm/plat-s3c/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -fno-delete-null-pointer-checks -O2 -marm -fno-omit-frame-pointer -mapcs -mno-sched-prolog -mabi=aapcs-linux -mno-thumb-interwork -D__LINUX_ARM_ARCH__=4 -march=armv4t -mtune=arm9tdmi -msoft-float -Uarm -Wframe-larger-than=1024 -fno-stack-protector -fno-omit-frame-pointer -fno-optimize-sibling-calls -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fno-dwarf2-cfi-asm -fconserve-stack   -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(fib_frontend)"  -D"KBUILD_MODNAME=KBUILD_STR(fib_frontend)"  -c -o net/ipv4/fib_frontend.o net/ipv4/fib_frontend.c
+cmd_net/ipv4/fib_frontend.o := arm-linux-gcc -Wp,-MD,net/ipv4/.fib_frontend.o.d  -nostdinc -isystem /home/guanglun/work/mini2440_uboot_linux/4.4.3/bin/../lib/gcc/arm-none-linux-gnueabi/4.4.3/include -Iinclude  -I/home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include -include include/linux/autoconf.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-s3c2410/include -Iarch/arm/mach-s3c2400/include -Iarch/arm/mach-s3c2412/include -Iarch/arm/mach-s3c2440/include -Iarch/arm/mach-s3c2442/include -Iarch/arm/mach-s3c2443/include -Iarch/arm/plat-s3c24xx/include -Iarch/arm/plat-s3c/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -fno-delete-null-pointer-checks -O2 -marm -fno-omit-frame-pointer -mapcs -mno-sched-prolog -mabi=aapcs-linux -mno-thumb-interwork -D__LINUX_ARM_ARCH__=4 -march=armv4t -mtune=arm9tdmi -msoft-float -Uarm -Wframe-larger-than=1024 -fno-stack-protector -fno-omit-frame-pointer -fno-optimize-sibling-calls -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fno-dwarf2-cfi-asm -fconserve-stack   -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(fib_frontend)"  -D"KBUILD_MODNAME=KBUILD_STR(fib_frontend)"  -c -o net/ipv4/fib_frontend.o net/ipv4/fib_frontend.c
 
 deps_net/ipv4/fib_frontend.o := \
   net/ipv4/fib_frontend.c \
@@ -37,29 +37,29 @@ deps_net/ipv4/fib_frontend.o := \
     $(wildcard include/config/lbdaf.h) \
     $(wildcard include/config/phys/addr/t/64bit.h) \
     $(wildcard include/config/64bit.h) \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/types.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/types.h \
   include/asm-generic/int-ll64.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/bitsperlong.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/bitsperlong.h \
   include/asm-generic/bitsperlong.h \
   include/linux/posix_types.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/posix_types.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/processor.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/posix_types.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/processor.h \
     $(wildcard include/config/mmu.h) \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/ptrace.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/ptrace.h \
     $(wildcard include/config/cpu/endian/be8.h) \
     $(wildcard include/config/arm/thumb.h) \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/hwcap.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/cache.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/hwcap.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/cache.h \
     $(wildcard include/config/arm/l1/cache/shift.h) \
     $(wildcard include/config/aeabi.h) \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/system.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/system.h \
     $(wildcard include/config/cpu/xsc3.h) \
     $(wildcard include/config/cpu/fa526.h) \
     $(wildcard include/config/cpu/sa1100.h) \
     $(wildcard include/config/cpu/sa110.h) \
     $(wildcard include/config/cpu/32v6k.h) \
   include/linux/linkage.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/linkage.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/linkage.h \
   include/linux/irqflags.h \
     $(wildcard include/config/trace/irqflags.h) \
     $(wildcard include/config/irqsoff/tracer.h) \
@@ -67,11 +67,11 @@ deps_net/ipv4/fib_frontend.o := \
     $(wildcard include/config/trace/irqflags/support.h) \
     $(wildcard include/config/x86.h) \
   include/linux/typecheck.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/irqflags.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/irqflags.h \
   include/asm-generic/cmpxchg-local.h \
   include/asm-generic/cmpxchg.h \
   include/linux/stat.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/stat.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/stat.h \
   include/linux/time.h \
     $(wildcard include/config/arch/uses/gettimeoffset.h) \
   include/linux/cache.h \
@@ -84,12 +84,12 @@ deps_net/ipv4/fib_frontend.o := \
     $(wildcard include/config/dynamic/debug.h) \
     $(wildcard include/config/ring/buffer.h) \
     $(wildcard include/config/numa.h) \
-  /home/guanglun/work/mini2440/4.4.3/bin/../lib/gcc/arm-none-linux-gnueabi/4.4.3/include/stdarg.h \
+  /home/guanglun/work/mini2440_uboot_linux/4.4.3/bin/../lib/gcc/arm-none-linux-gnueabi/4.4.3/include/stdarg.h \
   include/linux/bitops.h \
     $(wildcard include/config/generic/find/first/bit.h) \
     $(wildcard include/config/generic/find/last/bit.h) \
     $(wildcard include/config/generic/find/next/bit.h) \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/bitops.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/bitops.h \
   include/asm-generic/bitops/non-atomic.h \
   include/asm-generic/bitops/ffz.h \
   include/asm-generic/bitops/__fls.h \
@@ -105,15 +105,15 @@ deps_net/ipv4/fib_frontend.o := \
     $(wildcard include/config/arch/has/ilog2/u64.h) \
   include/linux/ratelimit.h \
   include/linux/param.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/param.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/param.h \
     $(wildcard include/config/hz.h) \
   include/linux/dynamic_debug.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/byteorder.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/byteorder.h \
   include/linux/byteorder/little_endian.h \
   include/linux/swab.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/swab.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/swab.h \
   include/linux/byteorder/generic.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/bug.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/bug.h \
     $(wildcard include/config/bug.h) \
     $(wildcard include/config/debug/bugverbose.h) \
   include/asm-generic/bug.h \
@@ -129,12 +129,12 @@ deps_net/ipv4/fib_frontend.o := \
     $(wildcard include/config/preempt/notifiers.h) \
   include/linux/thread_info.h \
     $(wildcard include/config/compat.h) \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/thread_info.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/thread_info.h \
     $(wildcard include/config/arm/thumbee.h) \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/fpstate.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/fpstate.h \
     $(wildcard include/config/vfpv3.h) \
     $(wildcard include/config/iwmmxt.h) \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/domain.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/domain.h \
     $(wildcard include/config/io/36.h) \
   include/linux/stringify.h \
   include/linux/bottom_half.h \
@@ -145,11 +145,11 @@ deps_net/ipv4/fib_frontend.o := \
     $(wildcard include/config/lock/stat.h) \
     $(wildcard include/config/generic/hardirqs.h) \
   include/linux/spinlock_up.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/atomic.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/atomic.h \
   include/asm-generic/atomic-long.h \
   include/linux/spinlock_api_up.h \
   include/linux/math64.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/div64.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/div64.h \
   include/linux/kmod.h \
   include/linux/gfp.h \
     $(wildcard include/config/kmemcheck.h) \
@@ -175,7 +175,7 @@ deps_net/ipv4/fib_frontend.o := \
     $(wildcard include/config/holes/in/zone.h) \
     $(wildcard include/config/arch/has/holes/memorymodel.h) \
   include/linux/wait.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/current.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/current.h \
   include/linux/threads.h \
     $(wildcard include/config/nr/cpus.h) \
     $(wildcard include/config/base/small.h) \
@@ -187,12 +187,12 @@ deps_net/ipv4/fib_frontend.o := \
   include/linux/bitmap.h \
   include/linux/string.h \
     $(wildcard include/config/binary/printf.h) \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/string.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/string.h \
   include/linux/pageblock-flags.h \
     $(wildcard include/config/hugetlb/page.h) \
     $(wildcard include/config/hugetlb/page/size/variable.h) \
   include/linux/bounds.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/page.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/page.h \
     $(wildcard include/config/cpu/copy/v3.h) \
     $(wildcard include/config/cpu/copy/v4wt.h) \
     $(wildcard include/config/cpu/copy/v4wb.h) \
@@ -200,7 +200,7 @@ deps_net/ipv4/fib_frontend.o := \
     $(wildcard include/config/cpu/copy/fa.h) \
     $(wildcard include/config/cpu/xscale.h) \
     $(wildcard include/config/cpu/copy/v6.h) \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/glue.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/glue.h \
     $(wildcard include/config/cpu/arm610.h) \
     $(wildcard include/config/cpu/arm710.h) \
     $(wildcard include/config/cpu/abrt/lv4t.h) \
@@ -213,14 +213,14 @@ deps_net/ipv4/fib_frontend.o := \
     $(wildcard include/config/cpu/pabrt/legacy.h) \
     $(wildcard include/config/cpu/pabrt/v6.h) \
     $(wildcard include/config/cpu/pabrt/v7.h) \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/memory.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/memory.h \
     $(wildcard include/config/page/offset.h) \
     $(wildcard include/config/thumb2/kernel.h) \
     $(wildcard include/config/dram/size.h) \
     $(wildcard include/config/dram/base.h) \
   include/linux/const.h \
   arch/arm/mach-s3c2410/include/mach/memory.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/sizes.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/sizes.h \
   include/asm-generic/memory_model.h \
     $(wildcard include/config/sparsemem/vmemmap.h) \
   include/asm-generic/getorder.h \
@@ -229,7 +229,7 @@ deps_net/ipv4/fib_frontend.o := \
     $(wildcard include/config/memory/hotremove.h) \
   include/linux/notifier.h \
   include/linux/errno.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/errno.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/errno.h \
   include/asm-generic/errno.h \
   include/asm-generic/errno-base.h \
   include/linux/mutex.h \
@@ -248,14 +248,14 @@ deps_net/ipv4/fib_frontend.o := \
     $(wildcard include/config/disable/obsolete/cpumask/functions.h) \
   include/linux/smp.h \
     $(wildcard include/config/use/generic/smp/helpers.h) \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/topology.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/topology.h \
   include/asm-generic/topology.h \
   include/linux/mmdebug.h \
     $(wildcard include/config/debug/virtual.h) \
   include/linux/elf.h \
   include/linux/elf-em.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/elf.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/user.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/elf.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/user.h \
   include/linux/kobject.h \
   include/linux/sysfs.h \
   include/linux/kref.h \
@@ -270,7 +270,7 @@ deps_net/ipv4/fib_frontend.o := \
   include/linux/completion.h \
   include/linux/rcutree.h \
     $(wildcard include/config/no/hz.h) \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/local.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/local.h \
   include/asm-generic/local.h \
   include/linux/percpu.h \
     $(wildcard include/config/have/legacy/per/cpu/area.h) \
@@ -296,7 +296,7 @@ deps_net/ipv4/fib_frontend.o := \
     $(wildcard include/config/ktime/scalar.h) \
   include/linux/jiffies.h \
   include/linux/timex.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/timex.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/timex.h \
   arch/arm/plat-s3c/include/mach/timex.h \
   include/linux/debugobjects.h \
     $(wildcard include/config/debug/objects/free.h) \
@@ -305,15 +305,15 @@ deps_net/ipv4/fib_frontend.o := \
   include/trace/define_trace.h \
   include/linux/kmemleak.h \
   include/linux/pfn.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/percpu.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/percpu.h \
   include/asm-generic/percpu.h \
   include/linux/percpu-defs.h \
     $(wildcard include/config/debug/force/weak/per/cpu.h) \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/module.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/module.h \
     $(wildcard include/config/arm/unwind.h) \
   include/trace/events/module.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/uaccess.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/unified.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/uaccess.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/unified.h \
     $(wildcard include/config/arm/asm/unified.h) \
   include/linux/capability.h \
     $(wildcard include/config/security/file/capabilities.h) \
@@ -335,16 +335,16 @@ deps_net/ipv4/fib_frontend.o := \
     $(wildcard include/config/mm/owner.h) \
     $(wildcard include/config/mmu/notifier.h) \
   include/linux/auxvec.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/auxvec.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/auxvec.h \
   include/linux/page-debug-flags.h \
     $(wildcard include/config/page/poisoning.h) \
     $(wildcard include/config/page/debug/something/else.h) \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/mmu.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/mmu.h \
     $(wildcard include/config/cpu/has/asid.h) \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/pgtable.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/pgtable.h \
     $(wildcard include/config/highpte.h) \
   include/asm-generic/4level-fixup.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/proc-fns.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/proc-fns.h \
     $(wildcard include/config/cpu/32.h) \
     $(wildcard include/config/cpu/arm7tdmi.h) \
     $(wildcard include/config/cpu/arm720t.h) \
@@ -364,9 +364,9 @@ deps_net/ipv4/fib_frontend.o := \
     $(wildcard include/config/cpu/feroceon.h) \
     $(wildcard include/config/cpu/v6.h) \
     $(wildcard include/config/cpu/v7.h) \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/cpu-single.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/cpu-single.h \
   arch/arm/plat-s3c/include/mach/vmalloc.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/pgtable-hwdef.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/pgtable-hwdef.h \
   include/asm-generic/pgtable.h \
   include/linux/page-flags.h \
     $(wildcard include/config/pageflags/extended.h) \
@@ -377,8 +377,8 @@ deps_net/ipv4/fib_frontend.o := \
   include/linux/vmstat.h \
     $(wildcard include/config/vm/event/counters.h) \
   include/linux/socket.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/socket.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/sockios.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/socket.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/sockios.h \
   include/linux/sockios.h \
   include/linux/uio.h \
   include/linux/in.h \
@@ -420,17 +420,17 @@ deps_net/ipv4/fib_frontend.o := \
   include/linux/net.h \
   include/linux/random.h \
   include/linux/ioctl.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/ioctl.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/ioctl.h \
   include/asm-generic/ioctl.h \
   include/linux/irqnr.h \
   include/linux/fcntl.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/fcntl.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/fcntl.h \
   include/asm-generic/fcntl.h \
   include/linux/sysctl.h \
   include/linux/textsearch.h \
   include/linux/err.h \
   include/net/checksum.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/checksum.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/checksum.h \
   include/linux/in6.h \
   include/linux/dmaengine.h \
     $(wildcard include/config/dma/engine.h) \
@@ -445,7 +445,7 @@ deps_net/ipv4/fib_frontend.o := \
     $(wildcard include/config/pm/sleep.h) \
     $(wildcard include/config/pm/runtime.h) \
   include/linux/semaphore.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/device.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/device.h \
     $(wildcard include/config/dmabounce.h) \
   include/linux/pm_wakeup.h \
     $(wildcard include/config/pm.h) \
@@ -455,8 +455,8 @@ deps_net/ipv4/fib_frontend.o := \
   include/linux/bug.h \
   include/linux/scatterlist.h \
     $(wildcard include/config/debug/sg.h) \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/scatterlist.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/io.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/scatterlist.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/io.h \
   arch/arm/mach-s3c2410/include/mach/io.h \
   arch/arm/mach-s3c2410/include/mach/hardware.h \
     $(wildcard include/config/cpu/s3c2440.h) \
@@ -467,14 +467,14 @@ deps_net/ipv4/fib_frontend.o := \
   arch/arm/plat-s3c24xx/include/plat/map.h \
     $(wildcard include/config/cpu/s3c2413.h) \
     $(wildcard include/config/cpu/s3c2412/only.h) \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/dma-mapping.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/dma-mapping.h \
   include/asm-generic/dma-coherent.h \
     $(wildcard include/config/have/generic/dma/coherent.h) \
   include/linux/hrtimer.h \
     $(wildcard include/config/high/res/timers.h) \
   include/linux/if_packet.h \
   include/linux/delay.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/delay.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/delay.h \
   include/linux/rculist.h \
   include/linux/ethtool.h \
   include/net/net_namespace.h \
@@ -518,8 +518,8 @@ deps_net/ipv4/fib_frontend.o := \
     $(wildcard include/config/virt/cpu/accounting.h) \
   include/linux/ftrace_irq.h \
     $(wildcard include/config/ftrace/nmi/enter.h) \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/hardirq.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/irq.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/hardirq.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/irq.h \
   arch/arm/mach-s3c2410/include/mach/irqs.h \
     $(wildcard include/config/cpu/s3c2443.h) \
   include/linux/irq_cpustat.h \
@@ -572,24 +572,24 @@ deps_net/ipv4/fib_frontend.o := \
   include/linux/sunrpc/msg_prot.h \
   include/linux/binfmts.h \
   include/linux/signal.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/signal.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/signal.h \
   include/asm-generic/signal-defs.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/sigcontext.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/siginfo.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/sigcontext.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/siginfo.h \
   include/asm-generic/siginfo.h \
   include/linux/resource.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/resource.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/resource.h \
   include/asm-generic/resource.h \
   include/linux/sem.h \
     $(wildcard include/config/sysvipc.h) \
   include/linux/ipc.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/ipcbuf.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/sembuf.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/ipcbuf.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/sembuf.h \
   include/linux/shm.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/shmparam.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/shmbuf.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/shmparam.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/shmbuf.h \
   include/linux/msg.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/msgbuf.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/msgbuf.h \
   include/linux/sched.h \
     $(wildcard include/config/sched/debug.h) \
     $(wildcard include/config/detect/softlockup.h) \
@@ -618,7 +618,7 @@ deps_net/ipv4/fib_frontend.o := \
     $(wildcard include/config/have/unstable/sched/clock.h) \
     $(wildcard include/config/debug/stack/usage.h) \
     $(wildcard include/config/group/sched.h) \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/cputime.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/cputime.h \
   include/asm-generic/cputime.h \
   include/linux/proportions.h \
   include/linux/percpu_counter.h \
@@ -641,7 +641,7 @@ deps_net/ipv4/fib_frontend.o := \
   include/linux/filter.h \
   include/linux/rculist_nulls.h \
   include/linux/poll.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/poll.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/poll.h \
   include/asm-generic/poll.h \
   include/net/dst.h \
     $(wildcard include/config/net/cls/route.h) \

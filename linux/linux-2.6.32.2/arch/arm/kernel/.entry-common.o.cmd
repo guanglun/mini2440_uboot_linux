@@ -1,4 +1,4 @@
-cmd_arch/arm/kernel/entry-common.o := arm-linux-gcc -Wp,-MD,arch/arm/kernel/.entry-common.o.d  -nostdinc -isystem /home/guanglun/work/mini2440/4.4.3/bin/../lib/gcc/arm-none-linux-gnueabi/4.4.3/include -Iinclude  -I/home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include -include include/linux/autoconf.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-s3c2410/include -Iarch/arm/mach-s3c2400/include -Iarch/arm/mach-s3c2412/include -Iarch/arm/mach-s3c2440/include -Iarch/arm/mach-s3c2442/include -Iarch/arm/mach-s3c2443/include -Iarch/arm/plat-s3c24xx/include -Iarch/arm/plat-s3c/include -D__ASSEMBLY__ -mabi=aapcs-linux -mno-thumb-interwork  -D__LINUX_ARM_ARCH__=4 -march=armv4t -mtune=arm9tdmi -include asm/unified.h -msoft-float       -c -o arch/arm/kernel/entry-common.o arch/arm/kernel/entry-common.S
+cmd_arch/arm/kernel/entry-common.o := arm-linux-gcc -Wp,-MD,arch/arm/kernel/.entry-common.o.d  -nostdinc -isystem /home/guanglun/work/mini2440_uboot_linux/4.4.3/bin/../lib/gcc/arm-none-linux-gnueabi/4.4.3/include -Iinclude  -I/home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include -include include/linux/autoconf.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-s3c2410/include -Iarch/arm/mach-s3c2400/include -Iarch/arm/mach-s3c2412/include -Iarch/arm/mach-s3c2440/include -Iarch/arm/mach-s3c2442/include -Iarch/arm/mach-s3c2443/include -Iarch/arm/plat-s3c24xx/include -Iarch/arm/plat-s3c/include -D__ASSEMBLY__ -mabi=aapcs-linux -mno-thumb-interwork  -D__LINUX_ARM_ARCH__=4 -march=armv4t -mtune=arm9tdmi -include asm/unified.h -msoft-float       -c -o arch/arm/kernel/entry-common.o arch/arm/kernel/entry-common.S
 
 deps_arch/arm/kernel/entry-common.o := \
   arch/arm/kernel/entry-common.S \
@@ -10,11 +10,11 @@ deps_arch/arm/kernel/entry-common.o := \
     $(wildcard include/config/cpu/endian/be8.h) \
     $(wildcard include/config/aeabi.h) \
     $(wildcard include/config/alignment/trap.h) \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/unified.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/unified.h \
     $(wildcard include/config/arm/asm/unified.h) \
     $(wildcard include/config/thumb2/kernel.h) \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/unistd.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/ftrace.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/unistd.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/ftrace.h \
     $(wildcard include/config/frame/pointer.h) \
     $(wildcard include/config/arm/unwind.h) \
   arch/arm/mach-s3c2410/include/mach/entry-macro.S \
@@ -22,16 +22,16 @@ deps_arch/arm/kernel/entry-common.o := \
     $(wildcard include/config/cpu/s3c2440.h) \
     $(wildcard include/config/cpu/s3c2412.h) \
     $(wildcard include/config/no/multiword/io.h) \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/sizes.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/sizes.h \
   arch/arm/mach-s3c2410/include/mach/map.h \
   arch/arm/plat-s3c/include/plat/map-base.h \
   arch/arm/plat-s3c24xx/include/plat/map.h \
     $(wildcard include/config/cpu/s3c2413.h) \
     $(wildcard include/config/cpu/s3c2412/only.h) \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/irq.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/irq.h \
   arch/arm/mach-s3c2410/include/mach/irqs.h \
     $(wildcard include/config/cpu/s3c2443.h) \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/unwind.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/unwind.h \
   arch/arm/kernel/entry-header.S \
     $(wildcard include/config/cpu/32v6k.h) \
     $(wildcard include/config/cpu/v6.h) \
@@ -44,20 +44,20 @@ deps_arch/arm/kernel/entry-common.o := \
     $(wildcard include/config/enable/must/check.h) \
     $(wildcard include/config/enable/warn/deprecated.h) \
   include/linux/linkage.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/linkage.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/assembler.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/linkage.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/assembler.h \
     $(wildcard include/config/cpu/feroceon.h) \
     $(wildcard include/config/trace/irqflags.h) \
     $(wildcard include/config/smp.h) \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/ptrace.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/hwcap.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/ptrace.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/hwcap.h \
   include/asm/asm-offsets.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/errno.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/errno.h \
   include/asm-generic/errno.h \
   include/asm-generic/errno-base.h \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/thread_info.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/thread_info.h \
     $(wildcard include/config/arm/thumbee.h) \
-  /home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include/asm/fpstate.h \
+  /home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include/asm/fpstate.h \
     $(wildcard include/config/vfpv3.h) \
     $(wildcard include/config/iwmmxt.h) \
   arch/arm/kernel/calls.S \

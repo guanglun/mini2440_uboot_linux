@@ -13,18 +13,18 @@
 @	compiled by GNU C version 4.3.0 20080428 (Red Hat 4.3.0-8), GMP version 4.3.1, MPFR version 2.4.2-p2.
 @ GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
 @ options passed:  -nostdinc -Iinclude
-@ -I/home/guanglun/work/mini2440/mini2440_uboot_linux/linux/linux-2.6.32.2/arch/arm/include
+@ -I/home/guanglun/work/mini2440_uboot_linux_github/linux/linux-2.6.32.2/arch/arm/include
 @ -Iarch/arm/mach-s3c2410/include -Iarch/arm/mach-s3c2400/include
 @ -Iarch/arm/mach-s3c2412/include -Iarch/arm/mach-s3c2440/include
 @ -Iarch/arm/mach-s3c2442/include -Iarch/arm/mach-s3c2443/include
 @ -Iarch/arm/plat-s3c24xx/include -Iarch/arm/plat-s3c/include -iprefix
-@ /home/guanglun/work/mini2440/4.4.3/bin/../lib/gcc/arm-none-linux-gnueabi/4.4.3/
+@ /home/guanglun/work/mini2440_uboot_linux/4.4.3/bin/../lib/gcc/arm-none-linux-gnueabi/4.4.3/
 @ -isysroot
-@ /home/guanglun/work/mini2440/4.4.3/bin/../arm-none-linux-gnueabi//sys-root
+@ /home/guanglun/work/mini2440_uboot_linux/4.4.3/bin/../arm-none-linux-gnueabi//sys-root
 @ -D__KERNEL__ -D__LINUX_ARM_ARCH__=4 -Uarm -DKBUILD_STR(s)=#s
 @ -DKBUILD_BASENAME=KBUILD_STR(asm_offsets)
 @ -DKBUILD_MODNAME=KBUILD_STR(asm_offsets) -isystem
-@ /home/guanglun/work/mini2440/4.4.3/bin/../lib/gcc/arm-none-linux-gnueabi/4.4.3/include
+@ /home/guanglun/work/mini2440_uboot_linux/4.4.3/bin/../lib/gcc/arm-none-linux-gnueabi/4.4.3/include
 @ -include include/linux/autoconf.h -MD arch/arm/kernel/.asm-offsets.s.d
 @ arch/arm/kernel/asm-offsets.c -mlittle-endian -marm -mapcs
 @ -mno-sched-prolog -mabi=aapcs-linux -mno-thumb-interwork -march=armv4t
