@@ -184,9 +184,9 @@ __lookup_processor_type:
 	teq	r3, r4
 	beq	2f					//ID正确，跳转回去
 	add	r5, r5, #PROC_INFO_SZ		@ sizeof(proc_info_list) ID不正确的话，寻找下一个list对比
-	cmp	r5, r6				//比较是否到了__proc_info_end
+	cmp	r5, r6				//比较是否小于__proc_info_end的地址，如果小于则说明还有list可以比较，否则就已经没有了
 	blo	1b
-	mov	r5, #0				@ unknown processor
+	mov	r5, #0				@ unknown processor  返回r5 = 0表示没有对应的处理器
 2:	mov	pc, lr
 ENDPROC(__lookup_processor_type)
 
@@ -205,6 +205,9 @@ ENDPROC(lookup_processor_type)
  * Look in <asm/procinfo.h> and arch/arm/kernel/arch.[ch] for
  * more information about the __proc_info and __arch_info structures.
  */
+
+
+//proc_info和arch_info位置
 	.align	2
 3:	.long	__proc_info_begin
 	.long	__proc_info_end
@@ -224,11 +227,14 @@ ENDPROC(lookup_processor_type)
  *  r5 = mach_info pointer in physical address space
  */
 __lookup_machine_type:
-	adr	r3, 4b
-	ldmia	r3, {r4, r5, r6}
+	adr	r3, 4b       //将 .long	. 的物理地址加载至r3寄存器 R3 =300081C0
+	ldmia	r3, {r4, r5, r6} //R4 =C00081C0, R5 =C001EF70, R6 =C001EFA4,
+
+	//将r5  r6的__arch_info_begin和__arch_info_end地址由虚拟地址转换成物理地址
 	sub	r3, r3, r4			@ get offset between virt&phys
 	add	r5, r5, r3			@ convert virt addresses to
-	add	r6, r6, r3			@ physical address space
+	add	r6, r6, r3			@ physical address space        
+	
 1:	ldr	r3, [r5, #MACHINFO_TYPE]	@ get machine type
 	teq	r3, r1				@ matches loader number?
 	beq	2f				@ found

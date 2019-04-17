@@ -33,12 +33,17 @@ SECTIONS
 	.init : {			/* Init code and data		*/
 			INIT_TEXT
 		_einittext = .;
-		__proc_info_begin = .;
+
+		/* 对应处理器 */
+		__proc_info_begin = .;             
 			*(.proc.info.init)
 		__proc_info_end = .;
-		__arch_info_begin = .;
+
+		/* 对应板子 */
+		__arch_info_begin = .;				 
 			*(.arch.info.init)
 		__arch_info_end = .;
+
 		__tagtable_begin = .;
 			*(.taglist.init)
 		__tagtable_end = .;

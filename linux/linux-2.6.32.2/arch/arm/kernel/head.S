@@ -89,9 +89,7 @@ KERNEL_RAM_PADDR  	0x30008000 	内核物理（RAM）地址
  *
  * This is normally called from the decompressor code.  The requirements
  * are: MMU = off, D-cache = off, I-cache = dont care, r0 = 0,
- * r1 = machine nr, r2 = atags pointer.
- *
- * This code is mostly position independent, so if you link the kernel at
+
  * 0xc0008000, you call this at __pa(0xc0008000).
  *
  * See linux/arch/arm/tools/mach-types for the complete list of machine
@@ -110,14 +108,18 @@ KERNEL_RAM_PADDR  	0x30008000 	内核物理（RAM）地址
 ENTRY(stext)
 	setmode	PSR_F_BIT | PSR_I_BIT | SVC_MODE, r9 @ ensure svc mode
 						@ and irqs disabled
-	mrc	p15, 0, r9, c0, c0		@ get processor id			//获取处理器ID
-	bl	__lookup_processor_type		@ r5=procinfo r9=cpuid 	//处理器类型
-	movs	r10, r5				@ invalid processor (r5=0)?
+	mrc	p15, 0, r9, c0, c0		@ get processor id			//获取处理器ID			r9 = cpuid
+	bl	__lookup_processor_type		@ r5=procinfo r9=cpuid 	//处理器类型是否支持
+	movs	r10, r5				@ invalid processor (r5=0)? //判断r5是否为0        r10 = procinfo
 	beq	__error_p			@ yes, error 'p'
-	bl	__lookup_machine_type		@ r5=machinfo
-	movs	r8, r5				@ invalid machine (r5=0)?
+	bl	__lookup_machine_type		@ r5=machinfo			//机器（板子）类型是否支持
+	movs	r8, r5				@ invalid machine (r5=0)?							r8 = machinfo
 	beq	__error_a			@ yes, error 'a'
-	bl	__vet_atags
+	bl	__vet_atags				//确定r2 atags指针的有效性   无参数？？？
+
+	//r8 = machinfo 
+	//r9 = cpuid 
+	//r10 = procinfo
 	bl	__create_page_tables
 
 	/*
@@ -248,15 +250,18 @@ ENDPROC(__turn_mmu_on)
  *  r0, r3, r6, r7 corrupted
  *  r4 = physical page table address
  */
+ //创建页表
 __create_page_tables:
-	pgtbl	r4				@ page table address
+//定义rgtbl 宏 功能是将KERNEL_RAM_PADDR - 0x4000复制给rd寄存器
+	pgtbl	r4				@ page table address       //r4 = 30004000
 
 	/*
 	 * Clear the 16K level 1 swapper page table
 	 */
-	mov	r0, r4
-	mov	r3, #0
-	add	r6, r0, #0x4000
+	mov	r0, r4		//r0 = 30004000
+	mov	r3, #0		//r3 = 0
+	add	r6, r0, #0x4000 //r6 = 30008000
+	//将30004000-30008000 的空间置0
 1:	str	r3, [r0], #4
 	str	r3, [r0], #4
 	str	r3, [r0], #4
@@ -264,7 +269,7 @@ __create_page_tables:
 	teq	r0, r6
 	bne	1b
 
-	ldr	r7, [r10, #PROCINFO_MM_MMUFLAGS] @ mm_mmuflags
+	ldr	r7, [r10, #PROCINFO_MM_MMUFLAGS] @ mm_mmuflags   r7 = 00000C1E __cpu_mm_mmu_flags
 
 	/*
 	 * Create identity mapping for first MB of kernel to
@@ -272,10 +277,21 @@ __create_page_tables:
 	 * will be removed by paging_init().  We use our current program
 	 * counter to determine corresponding section base address.
 	 */
-	mov	r6, pc
-	mov	r6, r6, lsr #20			@ start of kernel section
-	orr	r3, r7, r6, lsl #20		@ flags + kernel base
-	str	r3, [r4, r6, lsl #2]		@ identity mapping
+
+	 /*
+	 
+	 为第一个MB内核创建标识映射，以满足MMU启用。 此标识映射将通过paging_init（）删除。 我们使用当前的程序计数器来确定相应的部分基址。
+
+	 */
+
+	mov	r6, pc   //r6= 3000xxxx 通过pc值的高12位(右移20位),得到kernel的section,并存储到r6中.因为当前是通过运行时地址得到的kernel的section,因而是物理地址. 
+	mov	r6, r6, lsr #20			@ start of kernel section  r6 = 00000300
+	orr	r3, r7, r6, lsl #20		@ flags + kernel base   r3 = 30000C1E = r7 | (r6 << 20); flags + kernel base,得到页表中需要设置的值. 
+	str	r3, [r4, r6, lsl #2]		@ identity mapping  //设置页表: mem[r4 + r6 * 4] = r3   r4 = 30004000
+														//         mem(30004000 + 300 << 2) = 30000C1E
+														//         mem(30004000 + 300 * 4)  = 30000C1E
+														//			mem(30004C00) = 30000C1E
+														//这里,因为页表的每一项是32 bits(4 bytes),所以要乘以4(<<2). 
 
 	/*
 	 * Now setup the pagetables for our kernel direct
