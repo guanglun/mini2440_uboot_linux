@@ -182,9 +182,9 @@ __lookup_processor_type:
 1:	ldmia	r5, {r3, r4}			@ value, mask
 	and	r4, r4, r9			@ mask wanted bits
 	teq	r3, r4
-	beq	2f
-	add	r5, r5, #PROC_INFO_SZ		@ sizeof(proc_info_list)
-	cmp	r5, r6
+	beq	2f					//ID正确，跳转回去
+	add	r5, r5, #PROC_INFO_SZ		@ sizeof(proc_info_list) ID不正确的话，寻找下一个list对比
+	cmp	r5, r6				//比较是否到了__proc_info_end
 	blo	1b
 	mov	r5, #0				@ unknown processor
 2:	mov	pc, lr
