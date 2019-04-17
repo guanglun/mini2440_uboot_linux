@@ -1,0 +1,1 @@
+cmd_drivers/net/wireless/zd1211rw/zd1211rw.ko := arm-linux-ld -EL -r  -T /home/guanglun/work/mini2440_uboot_linux/linux/linux-2.6.32.2/scripts/module-common.lds --build-id -o drivers/net/wireless/zd1211rw/zd1211rw.ko drivers/net/wireless/zd1211rw/zd1211rw.o drivers/net/wireless/zd1211rw/zd1211rw.mod.o
