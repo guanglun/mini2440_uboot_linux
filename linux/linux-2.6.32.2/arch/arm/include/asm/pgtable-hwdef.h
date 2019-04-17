@@ -11,6 +11,16 @@
 #define _ASMARM_PGTABLE_HWDEF_H
 
 /*
+Page Global Directory (PGD)
+
+Page Upper Directory (PUD)
+
+Page Middle Directory (PMD)
+
+Page Table (PTE)
+*/
+
+/*
  * Hardware page table definitions.
  *
  * + Level 1 descriptor (PMD)

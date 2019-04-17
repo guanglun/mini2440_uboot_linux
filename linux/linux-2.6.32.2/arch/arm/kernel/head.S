@@ -27,11 +27,11 @@
 #endif
 
 /*
-PAGE_OFFSET 页表偏移地址			0xC0000000
-PHYS_OFFSET 物理内存偏移地址		 0x30000000
-TEXT_OFFSET 						0x00008000
-KERNEL_RAM_VADDR 内核虚拟映射地址    0xC0008000
-KERNEL_RAM_PADDR 内核物理（RAM）地址 0x30008000
+PAGE_OFFSET			0xC0000000 	页表偏移地址
+PHYS_OFFSET			0x30000000 	物理内存偏移地址
+TEXT_OFFSET			0x00008000
+KERNEL_RAM_VADDR	0xC0008000 	内核虚拟映射地址
+KERNEL_RAM_PADDR  	0x30008000 	内核物理（RAM）地址
 */
 
 #define KERNEL_RAM_VADDR	(PAGE_OFFSET + TEXT_OFFSET)
@@ -69,6 +69,12 @@ KERNEL_RAM_PADDR 内核物理（RAM）地址 0x30008000
 	ldr	\rd, =(KERNEL_RAM_PADDR - 0x4000)
 	.endm
 
+/*CONFIG_XIP_KERNEL未设置
+*#define KERNEL_START	KERNEL_RAM_VADDR
+*#define KERNEL_END		_end
+*/
+
+//XIP片上执行
 #ifdef CONFIG_XIP_KERNEL
 #define KERNEL_START	XIP_VIRT_ADDR(CONFIG_XIP_PHYS_ADDR)
 #define KERNEL_END	_edata_loc
@@ -95,12 +101,17 @@ KERNEL_RAM_PADDR 内核物理（RAM）地址 0x30008000
  * crap here - that's what the boot loader (or in extreme, well justified
  * circumstances, zImage) is for.
  */
+ /**
+ 内核运行入口
+ MCR指令将ARM处理器的寄存器中的数据传送到协处理器的寄存器中。如果协处理器不能成功地执行该操作，将产生未定义的指令异常中断。
+ MRC指令将协处理器的寄存器中数值传送到ARM处理器的寄存器中。如果协处理器不能成功地执行该操作，将产生未定义的指令异常中断。
+ **/
 	.section ".text.head", "ax"
 ENTRY(stext)
 	setmode	PSR_F_BIT | PSR_I_BIT | SVC_MODE, r9 @ ensure svc mode
 						@ and irqs disabled
-	mrc	p15, 0, r9, c0, c0		@ get processor id
-	bl	__lookup_processor_type		@ r5=procinfo r9=cpuid
+	mrc	p15, 0, r9, c0, c0		@ get processor id			//获取处理器ID
+	bl	__lookup_processor_type		@ r5=procinfo r9=cpuid 	//处理器类型
 	movs	r10, r5				@ invalid processor (r5=0)?
 	beq	__error_p			@ yes, error 'p'
 	bl	__lookup_machine_type		@ r5=machinfo

@@ -140,7 +140,7 @@ __error:
 	str	r3, [r0], #4
 #endif
 1:	mov	r0, r0
-	b	1b
+	b	1b     //1b b指back 1为标号
 ENDPROC(__error)
 
 
@@ -154,14 +154,29 @@ ENDPROC(__error)
  *	r9 = cpuid
  * Returns:
  *	r3, r4, r6 corrupted
- *	r5 = proc_info pointer in physical address space
+ *	r5 = proc_info pointer in physical address space 物理内存中的proc_info指针
  *	r9 = cpuid (preserved)
  */
+ //ADR : 小范围的地址读取伪指令.ADR 指令将基于 PC 相对偏移的地址值读取到寄存器中.
+ //LDMIA 和 STMIA 批量加载/存储指令可以实现在一组寄存器和一块连续的内存单元之间传输数据
 __lookup_processor_type:
-	adr	r3, 3f
-	ldmia	r3, {r5 - r7}
+	adr	r3, 3f	//3f f指forward 3为标号				
+	ldmia	r3, {r5 - r7} 
+/*	
+	r5 __proc_info_begin 	地址
+	r6 __proc_info_end		地址
+	r7 .					当前地址
+
+
+	R0 =00000000, R1 =000007CF, R2 =016F2818, R3 =300081B8
+    R4 =30008000, R5 =C001EF3C, R6 =C001EF70, R7 =C00081C0
+    R8 =016F2818, R9 =41129200, R10=00000004, R11=00000020, R12=306EFD84
+    R13=3049D990, R14=3000800C, SPSR=00000010
+
+*/
+
 	add	r3, r3, #8
-	sub	r3, r3, r7			@ get offset between virt&phys
+	sub	r3, r3, r7			@ get offset between virt&phys  R3 = 70000000 = 300081C0 - C00081C0
 	add	r5, r5, r3			@ convert virt addresses to
 	add	r6, r6, r3			@ physical address space
 1:	ldmia	r5, {r3, r4}			@ value, mask
