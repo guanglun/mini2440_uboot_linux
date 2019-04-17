@@ -1,0 +1,10 @@
+
+demo.bin:     file format binary
+
+
+Disassembly of section .data:
+
+00000000 <.data>:
+   0:	12345678 	eorsne	r5, r4, #125829120	; 0x7800000
+   4:	e3a00001 	mov	r0, #1
+   8:	eafffffe 	b	0x8

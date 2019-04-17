@@ -1,0 +1,14 @@
+{
+    
+    "configurations": [
+        {
+            "name": "ubuntu",
+            "includePath": [
+                "/home/guanglun/work/mini2440/mini2440_uboot_linux/uboot/u-boot/cpu/arm920t/s3c24x0",
+                "/home/guanglun/work/mini2440/mini2440_uboot_linux/uboot/u-boot/include",
+                "/home/guanglun/work/mini2440/mini2440_uboot_linux/uboot/u-boot/include/asm-arm"
+            ]
+        }
+    ],
+    "version": 4
+}

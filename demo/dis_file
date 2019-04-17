@@ -1,0 +1,90 @@
+
+demo_elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <_start>:
+   0:	12345678 	eorsne	r5, r4, #125829120	; 0x7800000
+   4:	e3a00001 	mov	r0, #1
+
+00000008 <_loop>:
+   8:	eafffffe 	b	8 <_loop>
+
+Disassembly of section .ARM.attributes:
+
+00000000 <.ARM.attributes>:
+   0:	00001941 	andeq	r1, r0, r1, asr #18
+   4:	61656100 	cmnvs	r5, r0, lsl #2
+   8:	01006962 	tsteq	r0, r2, ror #18
+   c:	0000000f 	andeq	r0, r0, pc
+  10:	00543405 	subseq	r3, r4, r5, lsl #8
+  14:	01080206 	tsteq	r8, r6, lsl #4
+  18:	Address 0x00000018 is out of bounds.
+
+
+Disassembly of section .debug_line:
+
+00000000 <.debug_line>:
+   0:	00000033 	andeq	r0, r0, r3, lsr r0
+   4:	001d0002 	andseq	r0, sp, r2
+   8:	01020000 	tsteq	r2, r0
+   c:	000d0efb 	strdeq	r0, [sp], -fp
+  10:	01010101 	tsteq	r1, r1, lsl #2
+  14:	01000000 	tsteq	r0, r0
+  18:	00010000 	andeq	r0, r1, r0
+  1c:	6f6d6564 	svcvs	0x006d6564
+  20:	0000532e 	andeq	r5, r0, lr, lsr #6
+  24:	00000000 	andeq	r0, r0, r0
+  28:	00040205 	andeq	r0, r4, r5, lsl #4
+  2c:	1a030000 	bne	c0034 <_loop+0xc002c>
+  30:	02023601 	andeq	r3, r2, #1048576	; 0x100000
+  34:	Address 0x00000034 is out of bounds.
+
+
+Disassembly of section .debug_info:
+
+00000000 <.debug_info>:
+   0:	00000060 	andeq	r0, r0, r0, rrx
+   4:	00000002 	andeq	r0, r0, r2
+   8:	01040000 	tsteq	r4, r0
+	...
+  14:	0000000c 	andeq	r0, r0, ip
+  18:	6f6d6564 	svcvs	0x006d6564
+  1c:	2f00532e 	svccs	0x0000532e
+  20:	656d6f68 	strbvs	r6, [sp, #-3944]!	; 0xf68
+  24:	6175672f 	cmnvs	r5, pc, lsr #14
+  28:	756c676e 	strbvc	r6, [ip, #-1902]!	; 0x76e
+  2c:	6f772f6e 	svcvs	0x00772f6e
+  30:	6d2f6b72 	vstmdbvs	pc!, {d6-<overflow reg d62>}
+  34:	32696e69 	rsbcc	r6, r9, #1680	; 0x690
+  38:	2f303434 	svccs	0x00303434
+  3c:	696e696d 	stmdbvs	lr!, {r0, r2, r3, r5, r6, r8, fp, sp, lr}^
+  40:	30343432 	eorscc	r3, r4, r2, lsr r4
+  44:	6f62755f 	svcvs	0x0062755f
+  48:	6c5f746f 	cfldrdvs	mvd7, [pc], {111}	; 0x6f
+  4c:	78756e69 	ldmdavc	r5!, {r0, r3, r5, r6, r9, sl, fp, sp, lr}^
+  50:	6d65642f 	cfstrdvs	mvd6, [r5, #-188]!	; 0xffffff44
+  54:	4e47006f 	cdpmi	0, 4, cr0, cr7, cr15, {3}
+  58:	53412055 	movtpl	r2, #4181	; 0x1055
+  5c:	322e3220 	eorcc	r3, lr, #2
+  60:	80010030 	andhi	r0, r1, r0, lsr r0
+
+Disassembly of section .debug_abbrev:
+
+00000000 <.debug_abbrev>:
+   0:	10001101 	andne	r1, r0, r1, lsl #2
+   4:	12011106 	andne	r1, r1, #-2147483647	; 0x80000001
+   8:	1b080301 	blne	200c14 <_loop+0x200c0c>
+   c:	13082508 	movwne	r2, #34056	; 0x8508
+  10:	00000005 	andeq	r0, r0, r5
+
+Disassembly of section .debug_aranges:
+
+00000000 <.debug_aranges>:
+   0:	0000001c 	andeq	r0, r0, ip, lsl r0
+   4:	00000002 	andeq	r0, r0, r2
+   8:	00040000 	andeq	r0, r4, r0
+	...
+  14:	0000000c 	andeq	r0, r0, ip
+	...
