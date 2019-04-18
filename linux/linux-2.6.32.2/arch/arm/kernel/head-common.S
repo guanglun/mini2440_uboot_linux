@@ -38,11 +38,25 @@ __switch_data:
  *  r2  = atags pointer
  *  r9  = processor ID
  */
+ /*
+R0~R15 和 r0~r15 (16 个通用寄存器);
+a1~a4(参数,结果或临时寄存器,同 R0~R3);
+v1~v8(变量寄存器,同 R4~R11);
+SB 和 sb(静态基址,同 R9);
+SL 和 sl(堆栈限制,同 R10);
+FP 和 fp(帧指针);
+IP 和 ip(过程调用中间临时寄存器,同 R12);
+SP 和 sp(堆栈指针,同 R13);
+LR 和 lr(链接寄存器,同 R14);
+PC 和 pc(程序计数器,同 R15).
+ */
 __mmap_switched:
 	adr	r3, __switch_data + 4
 
-	ldmia	r3!, {r4, r5, r6, r7}
+//R4 =C0460000, R5 =C0460000, R6 =C049D8E0, R7 =C04D1D38
+	ldmia	r3!, {r4, r5, r6, r7} 
 	cmp	r4, r5				@ Copy data segment if needed
+	//以下ne都不会执行
 1:	cmpne	r5, r6
 	ldrne	fp, [r4], #4
 	strne	fp, [r5], #4

@@ -110,7 +110,7 @@ ENTRY(stext)
 						@ and irqs disabled
 	mrc	p15, 0, r9, c0, c0		@ get processor id			//获取处理器ID			r9 = cpuid
 	bl	__lookup_processor_type		@ r5=procinfo r9=cpuid 	//处理器类型是否支持
-	movs	r10, r5				@ invalid processor (r5=0)? //判断r5是否为0        r10 = procinfo
+
 	beq	__error_p			@ yes, error 'p'
 	bl	__lookup_machine_type		@ r5=machinfo			//机器（板子）类型是否支持
 	movs	r8, r5				@ invalid machine (r5=0)?							r8 = machinfo
@@ -129,7 +129,7 @@ ENTRY(stext)
 	 * above.  On return, the CPU will be ready for the MMU to be
 	 * turned on, and r0 will hold the CPU control register value.
 	 */
-	ldr	r13, __switch_data		@ address to jump to after
+	ldr	r13, __switch_data		@ address to jump to after      r13 = __mmap_switched(虚拟地址)
 						@ mmu has been enabled
 	adr	lr, BSYM(__enable_mmu)		@ return (PIC) address
  ARM(	add	pc, r10, #PROCINFO_INITFUNC	)
@@ -193,25 +193,32 @@ __secondary_data:
  */
 __enable_mmu:
 #ifdef CONFIG_ALIGNMENT_TRAP
-	orr	r0, r0, #CR_A
+	orr	r0, r0, #CR_A			//执行
 #else
 	bic	r0, r0, #CR_A
 #endif
 #ifdef CONFIG_CPU_DCACHE_DISABLE
-	bic	r0, r0, #CR_C
+	bic	r0, r0, #CR_C			//未执行
 #endif
 #ifdef CONFIG_CPU_BPREDICT_DISABLE
-	bic	r0, r0, #CR_Z
+	bic	r0, r0, #CR_Z			//未执行
 #endif
 #ifdef CONFIG_CPU_ICACHE_DISABLE
-	bic	r0, r0, #CR_I
+	bic	r0, r0, #CR_I			//未执行
 #endif
 	mov	r5, #(domain_val(DOMAIN_USER, DOMAIN_MANAGER) | \
 		      domain_val(DOMAIN_KERNEL, DOMAIN_MANAGER) | \
 		      domain_val(DOMAIN_TABLE, DOMAIN_MANAGER) | \
-		      domain_val(DOMAIN_IO, DOMAIN_CLIENT))
+		      domain_val(DOMAIN_IO, DOMAIN_CLIENT))	
+
+//MRC：协处理器寄存器到ARM处理器寄存器的数据传送指令(读出协处理器寄存器)。
+//MCR：ARM处理器寄存器到协处理器寄存器的数据传送指令(写入协处理器寄存器)。
+
+	//c3 DOMAIN ACCESS CONTROL REGISTER
 	mcr	p15, 0, r5, c3, c0, 0		@ load domain access register
+	//r4 = 30004000 放进协处理器c2
 	mcr	p15, 0, r4, c2, c0, 0		@ load page table pointer
+
 	b	__turn_mmu_on
 ENDPROC(__enable_mmu)
 
@@ -252,12 +259,19 @@ ENDPROC(__turn_mmu_on)
  */
  //创建页表
 __create_page_tables:
+/* 
+*宏定义 *.macro pgtbl, rd *ldr \rd, =(KERNEL_RAM_PADDR - 0x4000) *.endm * 
+*分析：内存为 4G = 4*1024 MB；需要4096个表单表示，每一页表单为4bytes；因此需要16K内存，即0x4000； 
+*根据 =(KERNEL_RAM_PADDR - 0x4000)得，页表存放于-内核在内存中的物理地址之前。 
+*/
+
 //定义rgtbl 宏 功能是将KERNEL_RAM_PADDR - 0x4000复制给rd寄存器
 	pgtbl	r4				@ page table address       //r4 = 30004000
 
 	/*
 	 * Clear the 16K level 1 swapper page table
 	 */
+	 /* * 按16个bytes一次，将页表清空 */
 	mov	r0, r4		//r0 = 30004000
 	mov	r3, #0		//r3 = 0
 	add	r6, r0, #0x4000 //r6 = 30008000
@@ -269,6 +283,7 @@ __create_page_tables:
 	teq	r0, r6
 	bne	1b
 
+/* *r10 = proc_info_list类型结构体的基地址 *PROCINFO_MM_MMUFLAGS 8 /* offsetof(struct proc_info_list, __cpu_mm_mmu_flags) @ */
 	ldr	r7, [r10, #PROCINFO_MM_MMUFLAGS] @ mm_mmuflags   r7 = 00000C1E __cpu_mm_mmu_flags
 
 	/*
@@ -284,6 +299,19 @@ __create_page_tables:
 
 	 */
 
+/* 
+*下面代码建立kernel对应的section页表项。 * 
+*1. 通过PC值的高12位(右移20位)，得到kernel的section，并存储在r6中。 
+*2. 获取32bit的页表表单值 
+*3. 将页表表单值存放在页表内存区中。 * 
+*注意点： *a. lsr 20 因为虚拟地址分区中，后20位为相对地址，前12位为段地址 
+*b. lsl 2 因为每一个页表项为4字节，所以需要左移2位 
+*/
+
+/*页表将4GB的地址空间分成若干个1MB的段(section)，因此页表包含4096个页表项(section entry)。
+每个页表项是32bits(4 bytes)，因而页表占用4096*4=16k的内存空间。下面的代码是将这16k的页表清0。
+*/
+
 	mov	r6, pc   //r6= 3000xxxx 通过pc值的高12位(右移20位),得到kernel的section,并存储到r6中.因为当前是通过运行时地址得到的kernel的section,因而是物理地址. 
 	mov	r6, r6, lsr #20			@ start of kernel section  r6 = 00000300
 	orr	r3, r7, r6, lsl #20		@ flags + kernel base   r3 = 30000C1E = r7 | (r6 << 20); flags + kernel base,得到页表中需要设置的值. 
@@ -297,7 +325,15 @@ __create_page_tables:
 	 * Now setup the pagetables for our kernel direct
 	 * mapped region.
 	 */
-	add	r0, r4,  #(KERNEL_START & 0xff000000) >> 18
+/* 
+* 下面的 add r0, r4, #(KERNEL_START & 0xff000000) >> 18 涉及到一个立即数的概念： 
+* 关于arm汇编立即数，可以参考下面网站：http://blog.csdn.net/a99778800/article/details/6759825 * 
+* 下面这段代码就是存储kernel物理地址。建立页表，虚拟地址和物理地址之间建立连接。 
+* 即：将内核中所有的物理地址（1M为单位）都存放到了页表中，与虚拟地址一一对应。 */	 
+
+//KERNEL_START = 0xC0008000
+//这样分开写是由于arm的立即数只能是8位表示。
+	add	r0, r4,  #(KERNEL_START & 0xff000000) >> 18     //r0 = 30007000 R4 =30004000
 	str	r3, [r0, #(KERNEL_START & 0x00f00000) >> 18]!
 	ldr	r6, =(KERNEL_END - 1)
 	add	r0, r0, #4
@@ -307,7 +343,43 @@ __create_page_tables:
 	strls	r3, [r0], #4
 	bls	1b
 
-#ifdef CONFIG_XIP_KERNEL
+/*
+运行到此 段表在内存中如下：
+
+J-Link>mem32 30007000 10
+30007000 = 30000C1E 30100C1E 30200C1E 30300C1E 
+30007010 = 30400C1E 00000000 00000000 00000000 
+30007020 = 00000000 00000000 00000000 00000000 
+30007030 = 00000000 00000000 00000000 00000000 
+J-Link>h
+PC: (R15) = 300080D8, CPSR = 200000D3 (SVC mode, ARM FIQ dis. IRQ dis.)
+Current:
+     R0 =30007014, R1 =000007CF, R2 =00000000, R3 =30500C1E
+     R4 =30004000, R5 =00000000, R6 =30007013, R7 =00000C1E
+     R8 =3001EF70, R9 =41129200, R10=3001EF3C, R11=00000020, R12=306EFD84
+     R13=3049D990, R14=30008028, SPSR=00000010
+USR: R8 =3001EF70, R9 =41129200, R10=3001EF3C, R11=00000020, R12=306EFD84
+     R13=00000000, R14=00000000
+FIQ: R8 =00000000, R9 =00000000, R10=00000000, R11=00000000, R12=00000000
+     R13=00000000, R14=00000000, SPSR=00000010
+IRQ: R13=00000000, R14=00000000, SPSR=00000010
+SVC: R13=3049D990, R14=30008028, SPSR=00000010
+ABT: R13=00000000, R14=00000000, SPSR=00000010
+UND: R13=00000000, R14=00000000, SPSR=00000010
+
+
+*/
+
+
+/* 
+* XIP介绍: 
+* XIP是指 (EXECUTE IN PLACE) 是指直接从存放代码的位置上启动运行。 
+* 非XIP方式是指在运行之前需对代码进行重定位。该类型的内核以非压缩方式存放在Flash中，启动时由Bootloader加载到内存后运行。 * 
+* 如果是XIP技术的内核，上面的映射只能映射内核代码和只读数据部分 
+* 这里我们再映射一些RAM来作为.data and .bss空间。 
+*/
+
+#ifdef CONFIG_XIP_KERNEL XIP 未定义
 	/*
 	 * Map some ram to cover our .data and .bss areas.
 	 */
@@ -315,6 +387,7 @@ __create_page_tables:
 	.if	(KERNEL_RAM_PADDR & 0x00f00000)
 	orr	r3, r3, #(KERNEL_RAM_PADDR & 0x00f00000)
 	.endif
+	//这样分开写是由于arm的立即数只能是8位表示。
 	add	r0, r4,  #(KERNEL_RAM_VADDR & 0xff000000) >> 18
 	str	r3, [r0, #(KERNEL_RAM_VADDR & 0x00f00000) >> 18]!
 	ldr	r6, =(_end - 1)
@@ -328,13 +401,26 @@ __create_page_tables:
 
 	/*
 	 * Then map first 1MB of ram in case it contains our boot params.
+	 * 然后映射第一个1MB的RAM，以防它包含我们的引导参数。
 	 */
+/* 
+* 下面的代码用来设置RAM中大小为1M虚拟地址的页表。之所以要设置这个页表项的原因是该区域存储着boot params。 
+* 因此需要为它建立map，这样开启MMU后就可以访问 
+*/	 
+
+//这样分开写是由于arm的立即数只能是8位表示。
+
+/*
+*下面的代码用来设置RAM中起始地址为0x30000000、大小为1M虚拟地址的页表，之所以要设置这个页表项的原因是该区域起始地址为0x30000100存
+*储着boot params。因此需要为它建立map，这样开启MMU后就可以访问这些参数了。
+*/
 	add	r0, r4, #PAGE_OFFSET >> 18
 	orr	r6, r7, #(PHYS_OFFSET & 0xff000000)
 	.if	(PHYS_OFFSET & 0x00f00000)
 	orr	r6, r6, #(PHYS_OFFSET & 0x00f00000)
 	.endif
 	str	r6, [r0]
+
 
 #ifdef CONFIG_DEBUG_LL
 	ldr	r7, [r10, #PROCINFO_IO_MMUFLAGS] @ io_mmuflags

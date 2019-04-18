@@ -370,9 +370,9 @@ __arm920_setup:
 #endif
 	adr	r5, arm920_crval
 	ldmia	r5, {r5, r6}
-	mrc	p15, 0, r0, c1, c0		@ get control register v4
-	bic	r0, r0, r5
-	orr	r0, r0, r6
+	mrc	p15, 0, r0, c1, c0		@ get control register v4  //R0 =C000507A
+	bic	r0, r0, r5		//R0 =C0004040
+	orr	r0, r0, r6		//R0 =C0007175
 	mov	pc, lr
 	.size	__arm920_setup, . - __arm920_setup
 
