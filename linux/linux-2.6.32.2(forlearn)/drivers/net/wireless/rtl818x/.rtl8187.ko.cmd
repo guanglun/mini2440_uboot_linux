@@ -1,0 +1,1 @@
+cmd_drivers/net/wireless/rtl818x/rtl8187.ko := arm-linux-ld -EL -r  -T /home/guanglun/work/mini2440_uboot_linux/linux/linux-2.6.32.2/scripts/module-common.lds --build-id -o drivers/net/wireless/rtl818x/rtl8187.ko drivers/net/wireless/rtl818x/rtl8187.o drivers/net/wireless/rtl818x/rtl8187.mod.o

@@ -1,0 +1,1 @@
+cmd_drivers/net/wireless/rt2x00/rt2x00lib.ko := arm-linux-ld -EL -r  -T /home/guanglun/work/mini2440_uboot_linux/linux/linux-2.6.32.2/scripts/module-common.lds --build-id -o drivers/net/wireless/rt2x00/rt2x00lib.ko drivers/net/wireless/rt2x00/rt2x00lib.o drivers/net/wireless/rt2x00/rt2x00lib.mod.o
